@@ -67,24 +67,20 @@ tools {
           
       stage('build'){
           steps{
-              script{
-                  sh label: '', script: '''cd code
-mvn clean install'''
-              }
+             
+                  sh '********call gradle wrapper srcipt****'
+              
           }
       }
       stage('scripts'){
           steps{
-              script{
-                  sh label: '', script: '''cd code
-mvn clean install'''
-              }
+              sh '********permission-confog.pro-any other****'
           }
       }
       stage('Artifactory'){
           steps{
               script{
-                 sh '********call shell script here****'
+                 sh '********uploadglobal.sh****'
               }
                   
           }
