@@ -43,9 +43,7 @@ mvn clean install'''
 
 pipeline {
    agent any
-tools {
-    maven 'Maven 3.6.3'
-}
+
    stages {
       stage('clean workspace') {
          steps {
