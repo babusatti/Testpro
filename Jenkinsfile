@@ -56,10 +56,10 @@ tools {
       stage('checkout code'){
           steps{
               dir('code'){
-                  git branch: 'develop', url: 'https://github.com/babusatti/SeleniumTestDemo.git'
+                  git branch: 'develop', url: 'https://github.com/babusatti/yorrepo.git'
               }
               dir('script'){
-                  git branch: 'master', url: 'https://github.com/babusatti/SeleniumTestDemo.git'
+                  git branch: 'master', url: 'https://github.com/babusatti/yourrepo.git'
               }
           }
       }
@@ -73,10 +73,18 @@ mvn clean install'''
               }
           }
       }
-      stage('Deployment'){
+      stage('scripts'){
           steps{
               script{
-                  sshPublisher(publishers: [sshPublisherDesc(configName: 'dev1', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls -lrt', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'deploy/dev2/pc', remoteDirectorySDF: false, removePrefix: 'code/target', sourceFiles: 'code/target/*.jar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
+                  sh label: '', script: '''cd code
+mvn clean install'''
+              }
+          }
+      }
+      stage('Artifactory'){
+          steps{
+              script{
+                 sh '********call shell script here****'
               }
                   
           }
