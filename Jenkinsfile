@@ -56,10 +56,10 @@ tools {
       stage('checkout code'){
           steps{
               dir('code'){
-                  git 'https://github.com/babusatti/my-apprepo.git'
+                  git branch: 'develop', url: 'https://github.com/babusatti/SeleniumTestDemo.git'
               }
               dir('script'){
-                  git 'https://github.com/babusatti/my-apprepo.git'
+                  git branch: 'master', url: 'https://github.com/babusatti/SeleniumTestDemo.git'
               }
           }
       }
@@ -81,6 +81,13 @@ mvn clean install'''
                   
           }
       }
+      stage('email') {
+            steps {
+                
+               emailext attachmentsPattern: '**/*.png', body: 'Please find the sonar reports', recipientProviders: [developers(), requestor()], subject: 'Sonar-Reports', to: 'sattibabu0247@gmail.com'
+            }
+            
+        }
    }
   
 }
